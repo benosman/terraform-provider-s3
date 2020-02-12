@@ -10,8 +10,8 @@ A more generic S3 provider for Terraform.  The objective is to have an independe
 ## Installation
 The installation process assumes a properly installed and configured Go environment.
 ```
-go get github.com/negronjl/terraform-provider-s3
-go install github.com/negronjl/terraform-provider-s3
+go get github.com/estenrye/terraform-provider-s3
+go install github.com/estenrye/terraform-provider-s3
 ```
 The provider will be available in ```$GOPATH/bin```
 
