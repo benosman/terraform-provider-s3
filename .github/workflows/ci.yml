@@ -11,39 +11,41 @@ on:
       - releases/*
 
 jobs:
-  ci:
-    runs-on: ${{ matrix.os }}
-    strategy:
-      fail-fast: false
-      matrix:
-        os:
-          - ubuntu-latest
-          - macOS-latest
-          - windows-latest
-        version:
-          - latest
-          - v0.117.0
-    steps:
-      -
-        name: Checkout
-        uses: actions/checkout@v2
-      -
-        name: Unshallow
-        run: git fetch --prune --unshallow
-      -
-        name: Set up Go
+  name: ci
+  on: [push]
+  jobs:
+  
+    build:
+      name: Build
+      runs-on: ubuntu-latest
+      steps:
+  
+      - name: Set up Go 1.13
         uses: actions/setup-go@v1
         with:
-          go-version: 1.13.x
-      -
-        name: Check
-        uses: ./
-        with:
-          version: ${{ matrix.version }}
-          args: check --debug
-      -
-        name: GoReleaser
-        uses: ./
-        with:
-          version: ${{ matrix.version }}
-          args: release --skip-publish --rm-dist
+          go-version: 1.13
+        id: go
+  
+      - name: Check out code into the Go module directory
+        uses: actions/checkout@v2
+  
+      - name: Get dependencies
+        run: |
+          go get -v -t -d ./...
+          if [ -f Gopkg.toml ]; then
+              curl https://raw.githubusercontent.com/golang/dep/master/install.sh | sh
+              dep ensure
+          fi
+  
+      - name: Build linux_amd64
+        run: GOOS=linux   GOARCH=amd64 go build -o terraform-provider-s3_linux -v .
+      
+      - name: Build windows_amd64
+        run: GOOS=windows GOARCH=amd64 go build -o terraform-provider-s3_win32nt.exe -v .
+      
+      - name: Build darwin_amd64
+        run: GOOS=darwin GOARCH=amd64 go build -o terraform-provider-s3_darwin -v .
+
+      - name: Build freebsd_amd64
+        run: GOOS=freebsd GOARCH=amd64 go build -o terraform-provider-s3_freebsd -v .
+
