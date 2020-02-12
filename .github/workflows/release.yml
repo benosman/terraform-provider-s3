@@ -15,13 +15,16 @@ jobs:
         env:
           GOOS: darwin
           GOARCH: amd64
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Go Release Binary
         uses: ngs/go-release.action@v1.0.2
         env:
           GOOS: linux
           GOARCH: amd64
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Go Release Binary
         uses: ngs/go-release.action@v1.0.2
         env:
           GOOS: windows
           GOARCH: amd64
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
