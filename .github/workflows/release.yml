@@ -12,3 +12,16 @@ jobs:
           docker_channel: stable
       - name: Go Release Binary
         uses: ngs/go-release.action@v1.0.2
+        env:
+          GOOS: darwin
+          GOARCH: amd64
+      - name: Go Release Binary
+        uses: ngs/go-release.action@v1.0.2
+        env:
+          GOOS: linux
+          GOARCH: amd64
+      - name: Go Release Binary
+        uses: ngs/go-release.action@v1.0.2
+        env:
+          GOOS: windows
+          GOARCH: amd64
