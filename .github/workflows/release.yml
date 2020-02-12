@@ -47,10 +47,10 @@ jobs:
       uses: softprops/action-gh-release@v1
       if: startsWith(github.ref, 'refs/tags/')
       with:
-        files:
-          - terraform-provider-s3_linux
-          - terraform-provider-s3_win32nt.exe
-          - terraform-provider-s3_darwin
-          - terraform-provider-s3_freebsd
+        files: |
+          terraform-provider-s3_linux
+          terraform-provider-s3_win32nt.exe
+          terraform-provider-s3_darwin
+          terraform-provider-s3_freebsd
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
