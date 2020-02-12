@@ -5,5 +5,10 @@ jobs:
     name: Release
     runs-on: [ubuntu-latest]
     steps:
+      - name: setup-docker
+        uses: docker-practice/actions-setup-docker@0.0.1
+        with:
+          docker_version: 19.03
+          docker_channel: stable
       - name: Go Release Binary
         uses: ngs/go-release.action@v1.0.2
