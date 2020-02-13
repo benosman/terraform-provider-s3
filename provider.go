@@ -97,7 +97,7 @@ func providerConfigure(d *schema.ResourceData) (interface{}, error) {
 	path := ""
 	profile := ""
 
-	if d.Get("s3_acccess_key") != nil {
+	if d.Get("s3_access_key") != nil {
 		accessKey = d.Get("s3_access_key").(string)
 	}
 
