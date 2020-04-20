@@ -1,4 +1,4 @@
-package main
+package s3
 
 import (
 	awsCredentials "github.com/aws/aws-sdk-go/aws/credentials"

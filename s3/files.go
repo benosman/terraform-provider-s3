@@ -1,13 +1,13 @@
-package main
+package s3
 
 import (
+	"github.com/minio/minio-go/v6"
 	"log"
 
 	"bytes"
 	"crypto/sha512"
 	"fmt"
 	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
-	"github.com/minio/minio-go/v6"
 	"io/ioutil"
 	"strings"
 )
